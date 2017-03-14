@@ -5,7 +5,7 @@ Server part of our SourcePython admin panel by the Venomz Multigaming. You can v
 # Installation
 1. Clone the repository
 2. Install it under the `addons/source-python/plugins` folder of your game server
-3. Go edit the `permissions.py` file to setup your admins permissions. The `admin_config` array is a json array should look like
+3. Go edit the `permissions.py` file to setup your admins permissions. The `admin_config` object is a json object should look like
 ```
 {
 	'<steam_id_v3>': '<list of permissions>',
