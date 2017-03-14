@@ -6,7 +6,7 @@ Server part of our SourcePython admin panel by the Venomz Multigaming. You can v
 1. Clone the repository
 2. Install it under the `addons/source-python/plugins` folder of your game server
 3. Go edit the `permissions.py` file to setup your admins permissions. The `admin_config` array is a json array should look like
-```json
+```
 {
 	'<steam_id_v3>': '<list of permissions>',
 	'STEAM_1:0:26270590': 'a', # Example, will have the 'a' flag
@@ -17,7 +17,7 @@ Server part of our SourcePython admin panel by the Venomz Multigaming. You can v
 # Development
 You can add a new command with the decorator `@command_manager.add_command(<command_name>, <needed_flag>)`.
 For example
-```python
+```
 @command_manager.add_command('sp_admin', 'a') # This command can be triggered by typping 'sp_admin' in the game console and the triggerer needs the 'a' flag.
 def _show_admin_menu(player):
 	main_menu.send(player)
