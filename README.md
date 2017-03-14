@@ -1,5 +1,5 @@
 # SP-admin-server
-Server part of our SourcePython admin panel by the Venomz Multigaming. You can visit our [website](https://venomz.fr), [forums](https://forum.venomz.fr), or come play with us on our [teamspeak3 server](ts3server://ts.venomz.fr/?port=9988)
+Server part of our SourcePython admin panel by the Venomz Multigaming. You can visit our [Website](https://venomz.fr), [Forums](https://forum.venomz.fr), or come play with us on our Teamspeak3 server: ts.venomz.fr:9988
 
 
 # Installation
