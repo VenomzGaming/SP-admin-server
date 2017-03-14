@@ -7,7 +7,7 @@
 '''
 
 admin_config = {
-	'STEAM_1:0:26270590': 'a', # BlackWolf
+	'STEAM_1:0:26270590': 'a' # BlackWolf
 }
 
 ## ================ DEFAULT DICT ====================

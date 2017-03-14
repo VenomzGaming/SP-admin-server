@@ -1,19 +1,12 @@
-'''
+from collections import defaultdict
+from inspect import signature
 
-	Dictionary Manager to hold all registered commands.
-
-'''
-
-## =============== ALL DECLARTION ===================
+## ALL DECLARATION
 
 __all__ = (
 	'command_manager',
 )
 
-## ================ COMMAND DICT ====================
-
-from collections import defaultdict
-from inspect import signature
 
 class CommandManager(defaultdict):
 
@@ -37,9 +30,6 @@ class CommandManager(defaultdict):
 
 command_manager = CommandManager()
 
-## ================= EXCEPTIONS ======================
-
-''' Required Exception. '''
 
 class CommandException(Exception):
 	pass

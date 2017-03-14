@@ -31,7 +31,7 @@ def on_client_command(array, index):
 
 		player = Player(index)
 
-		if method and flag and check_permission(player, flag):
+		if method and check_permission(player, flag):
 			args = [player]
 			for i in range(1, len(array)):
 				args.append(array[i])
@@ -41,11 +41,9 @@ def on_client_command(array, index):
 
 			else:
 				engine_server.client_printf(player.edict,
-					'CA - This command requires {} arguments.\n'.format(length))
+					'CA - This command requires {} arguments.\n'.format(
+						length))
 
 			return CommandReturn.BLOCK
 
 	return CommandReturn.CONTINUE
-
-
-
