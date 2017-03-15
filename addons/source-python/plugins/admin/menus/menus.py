@@ -9,6 +9,7 @@ from menus import Text
 from .punishments import *
 from .servers import *
 from .voting import *
+from ..strings import menus
 
 ## ALL DECLARATION
 
@@ -29,15 +30,17 @@ def _on_main_menu_select(menu, index, choice):
 
 _main_menu_selections = {
     1: player_menu,
-    2: changemap
+    2: server_menu,
+    3: voting_menu
 }
 
 main_menu = PagedMenu(
-    title='Venomz admin menu',
+    title=menus['Main Menu'],
     select_callback=_on_main_menu_select,
     data=[
-        PagedOption('Kicker un joueur', 1),
-        PagedOption('Changer de map', 2)
+        PagedOption(menus['Player Menu'], 1),
+        PagedOption(menus['Server Menu'], 2),
+        PagedOption(menus['Voting Menu'], 3)
     ]
 )
 
@@ -55,7 +58,7 @@ _player_menu_selections = {
 }
 
 player_menu = PagedMenu(
-    title='Manage Player',
+    title=menus['Player Menu'],
     select_callback=_on_player_menu_select,
     data=[
         PagedOption('Kicker un joueur', 1),
@@ -77,7 +80,7 @@ _server_menu_selections = {
 }
 
 server_menu = PagedMenu(
-    title='Server Management',
+    title=menus['Server Menu'],
     select_callback=_on_server_menu_select,
     data=[
         PagedOption('Kicker un joueur', 1),
@@ -99,7 +102,7 @@ _voting_menu_selections = {
 }
 
 voting_menu = PagedMenu(
-    title='Manage Player',
+    title=menus['Voting Menu'],
     select_callback=_on_voting_menu_select,
     data=[
         PagedOption('Kicker un joueur', 1),
