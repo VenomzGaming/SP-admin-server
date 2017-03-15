@@ -7,9 +7,9 @@ from .info import info
 ## ALL DECLARATION
 
 __all__ = (
-	'strings',
+	'menus',
 )
 
 ## GLOBALS
 
-strings = LangStrings(info.basename + '/' + 'strings')
+menus = LangStrings(info.basename / 'menus')
