@@ -16,8 +16,6 @@ __all__ = (
     'MySQL',
 )
 
-## 
-
 class MySQL(_Database):
     ''' MySQL database manager.'''
 
