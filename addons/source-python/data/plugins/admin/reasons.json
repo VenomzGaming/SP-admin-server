@@ -1,14 +1,28 @@
 {
-	"reasons": {
-		"ban": [
-			"Reason 1",
-			"Reason 1",
-			"Reason 3"
-		],
-		"kick": [
-			"Reason 1",
-			"Reason 1",
-			"Reason 3"
-		]
-	}
+    "reasons": {
+        "en": {
+            "ban": [
+                "Reason 1",
+                "Reason 1",
+                "Reason 3"
+            ],
+            "kick": [
+                "Reason 1",
+                "Reason 1",
+                "Reason 3"
+            ]
+        },
+        "fr": {
+            "ban": [
+                "Reason 1",
+                "Reason 1",
+                "Reason 3"
+            ],
+            "kick": [
+                "Reason 1",
+                "Reason 1",
+                "Reason 3"
+            ]
+        }
+    }
 }
