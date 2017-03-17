@@ -1,8 +1,8 @@
 '''
 
-    Command management for admin systems.
-    ... Decorators allow for easy input into
-    the menus.
+	Command management for admin systems.
+	... Decorators allow for easy input into
+	the menus.
 
 '''
 
@@ -21,29 +21,29 @@ from players.entity import Player
 
 @ClientCommandFilter
 def on_client_command(array, index):
-    command = array[0]
+	command = array[0]
 
-    if command in command_manager:
-        try:
-            method, length, flag = command_manager[command]
-        except:
-            method, length = command_manager[command]
+	if command in command_manager:
+		try:
+			method, length, flag = command_manager[command]
+		except:
+			method, length = command_manager[command]
 
-        player = Player(index)
+		player = Player(index)
 
-        if method and check_permission(player, flag):
-            args = [player]
-            for i in range(1, len(array)):
-                args.append(array[i])
+		if method and check_permission(player, flag):
+			args = [player]
+			for i in range(1, len(array)):
+				args.append(array[i])
 
-            if len(args) == length:
-                method(*args)
+			if len(args) == length:
+				method(*args)
 
-            else:
-                engine_server.client_printf(player.edict,
-                    'CA - This command requires {} arguments.\n'.format(
-                        length))
+			else:
+				engine_server.client_printf(player.edict,
+					'CA - This command requires {} arguments.\n'.format(
+						length))
 
-            return CommandReturn.BLOCK
+			return CommandReturn.BLOCK
 
-    return CommandReturn.CONTINUE
+	return CommandReturn.CONTINUE
