@@ -2,25 +2,23 @@
     "reasons": {
         "en": {
             "ban": [
-                "Reason 1",
-                "Reason 1",
-                "Reason 3"
+                "Cheating",
+                "Ban comportement"
             ],
             "kick": [
                 "Reason 1",
-                "Reason 1",
+                "Reason 2",
                 "Reason 3"
             ]
         },
         "fr": {
             "ban": [
-                "Reason 1",
-                "Reason 1",
-                "Reason 3"
+                "Cheat",
+                "Mauvais comportement"
             ],
             "kick": [
                 "Reason 1",
-                "Reason 1",
+                "Reason 2",
                 "Reason 3"
             ]
         }

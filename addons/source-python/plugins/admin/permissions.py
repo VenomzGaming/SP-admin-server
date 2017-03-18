@@ -4,7 +4,8 @@ from collections import defaultdict
 from engines.server import engine_server
 
 admin_config = {
-    'STEAM_1:0:26270590': 'a' # BlackWolf
+    'STEAM_1:0:26270590': 'a', # BlackWolf
+    'STEAM_1:0:18526267': 'a' # Existenz
 }
 
 

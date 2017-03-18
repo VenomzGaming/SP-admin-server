@@ -5,6 +5,8 @@ from .commands.manager import command_manager
 from .commands.filters import Filter
 from .permissions import check_permission
 
+import admin.menus
+from admin.menus.menus import main_menu
 
 ## LOAD / UNLOAD
 

@@ -11,8 +11,9 @@ from messages import SayText2
 from engines.server import engine_server
 from listeners.tick import Delay
 
-import .menus
-from ..utils import get_map_list
+# import admin.menus
+# from admin.menus.menus import server_menu
+from ..utils.utils import get_map_list
 from ..strings import menus, messages
 
 ## ALL DECLARATION
@@ -37,8 +38,8 @@ def _on_changemap_select(menu, index, choice):
 
 
 changemap_menu = PagedMenu(
-    title=menus['Map Menu'],
+    title=menus['Change Map'],
     build_callback=_on_changemap_build,
     select_callback=_on_changemap_select,
-    parent_menu=player_menu,
+    # parent_menu=server_menu,
 )

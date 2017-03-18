@@ -10,9 +10,9 @@ from .info import info
 ## ALL DECLARATION
 
 __all__ = (
-    # 'messages',
+    'messages',
     'menus',
-    'reasons',
+    'reasons_messages',
 )
 
 ## GLOBALS
@@ -24,4 +24,4 @@ menus = LangStrings(info.basename + '/' + 'menus')
 
 path = PLUGIN_DATA_PATH / info.basename / 'reasons.json'
 with open(path, 'r') as f:
-    reasons = json.load(f)
+    reasons_messages = json.load(f)

@@ -6,8 +6,8 @@ from menus import PagedMenu
 from menus import PagedOption
 from menus import Text
 
-from .punishments import *
-from .servers import *
+from .punishments import slay_menu, kick_menu, ban_menu, mute_menu
+from .servers import changemap_menu
 from .voting import *
 from ..strings import menus
 
@@ -33,19 +33,20 @@ player_menu = PagedMenu(
     title=menus['Player Menu'],
     select_callback=_on_player_menu_select,
     data=[
-        PagedOption(menus['Slay Menu'], 1),
-        PagedOption(menus['Kick Menu'], 2),
-        PagedOption(menus['Ban Menu'], 2)
+        PagedOption(menus['Mute Menu'], 1),
+        PagedOption(menus['Slay Menu'], 2),
+        PagedOption(menus['Kick Menu'], 3),
+        PagedOption(menus['Ban Menu'], 4)
     ]
 )
 
 
 _player_menu_selections = {
-    1: slay_menu,
-    2: kick_menu,
-    3: ban_menu
+    1: mute_menu,
+    2: slay_menu,
+    3: kick_menu,
+    4: ban_menu
 }
-
 
 #
 #   SERVER MENU
@@ -88,8 +89,8 @@ voting_menu = PagedMenu(
 
 
 _voting_menu_selections = {
-    1: kick_player,
-    2: changemap
+    # 1: kick_player,
+    # 2: changemap
 }
 
 
