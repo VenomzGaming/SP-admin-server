@@ -13,6 +13,7 @@ __all__ = (
 
 
 class Filter:
+    """This class provides some basic filters to iterate through players"""
 
     def __init__(self, string_to_filter, caller):
         self._symbols = {
@@ -44,6 +45,7 @@ class Filter:
 
 
     def _by_name(self, argument):
+        """Returns a list of players by their name"""
         players = {player.name: player for player in PlayerIter()}
         ## Fuzzywuzzy is used to trace a name to a player.
         name, percent = process.extractOne(argument, players.keys())
@@ -64,6 +66,7 @@ class Filter:
         self._group.append(target)
 
     def _break_symbol_from_argument(self, part):
+        """Used to split symbol from arguments"""
         symbol = part[0]
         argument = part[1:]
         if not symbol in self._symbols:

@@ -9,7 +9,10 @@ __all__ = (
 
 
 class CommandManager(defaultdict):
-
+    """This class provides a decorador used to add commands for clients
+    You can define a command by doing
+    `@command_manager.add_command(<command>, <required_flag>)` above a function"""
+    
     def __missing__(self, item):
         return (None, None)
 
@@ -18,11 +21,13 @@ class CommandManager(defaultdict):
             raise CommandException('Cannot re-assign command ({command_name})'.format(
                 command_name=command))
         def decorator(method):
-            self[command] = (method,
-                ## Retrieves the functions argument count. Used to verify the client/say command is valid.
+            ## Retrieves the functions argument count.
+            ## Used to verify the client/say command is valid.
+            self[command] = (
+                method,
                 len(signature(method).parameters),
                 flag
-                )
+            )
             def new(*args):
                 method(*args)
             return new

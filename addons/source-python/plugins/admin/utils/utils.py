@@ -15,6 +15,7 @@ __all__ = (
 
 
 def get_map_list():
+    """Returns the map list found in the maplist.txt file"""
     maplist = GAME_PATH / 'maplist.txt'
     if not maplist.isfile():
         raise FileNotFoundError("Missing {}".format('maplist'))

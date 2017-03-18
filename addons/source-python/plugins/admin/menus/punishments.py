@@ -109,6 +109,7 @@ def _on_ban_player_select(menu, index, choice):
 
 
 def _on_ban_duration_build(menu, index):
+    """All possible ban durations are declared here"""
     menu.clear()
     menu.append(PagedOption(menus['1 Hour'], 60))
     menu.append(PagedOption(menus['2 Hour'], 120))
