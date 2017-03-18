@@ -37,4 +37,5 @@ command_manager = CommandManager()
 
 
 class CommandException(Exception):
+    """Empty exception"""
     pass

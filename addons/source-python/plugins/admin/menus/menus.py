@@ -8,7 +8,6 @@ from menus import Text
 
 from .punishments import slay_menu, kick_menu, ban_menu, mute_menu
 from .servers import changemap_menu
-from .voting import *
 from ..strings import menus
 
 ## ALL DECLARATION
