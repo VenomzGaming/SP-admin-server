@@ -1,6 +1,8 @@
 # SP-admin-server
 Server part of our SourcePython admin panel by the Venomz Multigaming. You can visit our [Website](https://venomz.fr), [Forums](https://forum.venomz.fr), or come play with us on our Teamspeak3 server: ts.venomz.fr:9988
 
+# Caution
+This plugin is an alpha version, *we are still developping it* ! We reserve right to make non compatible editions to the plugin.
 
 # Installation
 1. Clone the repository
@@ -20,7 +22,7 @@ For example
 ```
 @command_manager.add_command('sp_admin', 'a') # This command can be triggered by typping 'sp_admin' in the game console and the triggerer needs the 'a' flag.
 def _show_admin_menu(player):
-	main_menu.send(player)
+	AdminMenu.menu().send(player)
 ```
 
 # Contributions
