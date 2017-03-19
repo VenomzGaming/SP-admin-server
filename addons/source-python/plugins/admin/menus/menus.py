@@ -5,6 +5,9 @@ from menus import ListOption
 from menus import PagedMenu
 from menus import PagedOption
 from menus import Text
+from menus import SimpleMenu
+from menus import SimpleOption
+from messages import SayText2
 
 from .punishments import slay_menu, kick_menu, ban_menu, mute_menu
 from .servers import changemap_menu
@@ -19,101 +22,75 @@ __all__ = (
     'main_menu',
 )
 
+def _generic_simple_menu_select(menu, index, choice):
+    next_menu = choice.value
+    if next_menu is not None:
+        next_menu.parent_menu = menu
+        return next_menu
 
 #
 #   PLAYER MENU
 #
-def _on_player_menu_select(menu, index, choice):
-    if choice.value in _player_menu_selections:
-        return _player_menu_selections[choice.value]
 
+def _player_menu_build(menu, index):
+    menu.clear()
+    menu.append(Text(menus['Player Menu']))
+    menu.append(SimpleOption(1, menus['Mute Menu'], mute_menu))
+    menu.append(SimpleOption(2, menus['Slay Menu'], slay_menu))
+    menu.append(SimpleOption(3, menus['Kick Menu'], kick_menu))
+    menu.append(SimpleOption(4, menus['Ban Menu'], ban_menu))
+    menu.append(SimpleOption(7, menus['Back'], main_menu, highlight=False))
+    menu.append(SimpleOption(9, menus['Close'], highlight=False))
 
-player_menu = PagedMenu(
-    title=menus['Player Menu'],
-    select_callback=_on_player_menu_select,
-    data=[
-        PagedOption(menus['Mute Menu'], 1),
-        PagedOption(menus['Slay Menu'], 2),
-        PagedOption(menus['Kick Menu'], 3),
-        PagedOption(menus['Ban Menu'], 4)
-    ]
+player_menu = SimpleMenu(
+    build_callback=_player_menu_build,
+    select_callback=_generic_simple_menu_select
 )
-
-
-_player_menu_selections = {
-    1: mute_menu,
-    2: slay_menu,
-    3: kick_menu,
-    4: ban_menu
-}
 
 #
 #   SERVER MENU
 #
-def _on_server_menu_select(menu, index, choice):
-    if choice.value in _server_menu_selections:
-        return _server_menu_selections[choice.value]
 
+def _server_menu_build(menu, index):
+    menu.clear()
+    menu.append(Text(menus['Server Menu']))
+    menu.append(SimpleOption(1, menus['Change Map'], changemap_menu))
+    menu.append(SimpleOption(7, menus['Back'], main_menu, highlight=False))
+    menu.append(SimpleOption(9, menus['Close'], highlight=False))
 
-server_menu = PagedMenu(
-    title=menus['Server Menu'],
-    select_callback=_on_server_menu_select,
-    data=[
-        PagedOption(menus['Change Map'], 1)
-    ]
+server_menu = SimpleMenu(
+    build_callback=_server_menu_build,
+    select_callback=_generic_simple_menu_select
 )
-
-
-_server_menu_selections = {
-    1: changemap_menu
-}
-
 
 #
 #   VOTING MENU
 #
-def _on_voting_menu_select(menu, index, choice):
-    if choice.value in _voting_menu_selections:
-        return _voting_menu_selections[choice.value]
 
+def _voting_menu_build(menu, index):
+    menu.clear()
+    menu.append(Text(menus['Voting Menu']))
+    menu.append(SimpleOption(1, menus['Kick Menu'], kick_menu))
+    menu.append(SimpleOption(2, menus['Change Map'], changemap_menu))
+    menu.append(SimpleOption(7, menus['Back'], main_menu, highlight=False))
+    menu.append(SimpleOption(9, menus['Close'], highlight=False))
 
-voting_menu = PagedMenu(
-    title=menus['Voting Menu'],
-    select_callback=_on_voting_menu_select,
-    data=[
-        PagedOption('Kicker un joueur', 1),
-        PagedOption('Changer de map', 2)
-    ]
+voting_menu = SimpleMenu(
+    build_callback=_voting_menu_build,
+    select_callback=_generic_simple_menu_select,
 )
-
-
-_voting_menu_selections = {
-    # 1: kick_player,
-    # 2: changemap
-}
-
 
 #
 #   MAIN
 #
-def _on_main_menu_select(menu, index, choice):
-    if choice.value in _main_menu_selections:
-        return _main_menu_selections[choice.value]
 
-
-main_menu = PagedMenu(
-    title=menus['Main Menu'],
-    select_callback=_on_main_menu_select,
-    data=[
-        PagedOption(menus['Player Menu'], 1),
-        PagedOption(menus['Server Menu'], 2),
-        PagedOption(menus['Voting Menu'], 3)
-    ]
+main_menu = SimpleMenu(
+    [
+        Text(menus['Main Menu']),
+        SimpleOption(1, menus['Player Menu'], player_menu),
+        SimpleOption(2, menus['Server Menu'], server_menu),
+        SimpleOption(3, menus['Voting Menu'], voting_menu),
+        SimpleOption(9, menus['Close'], highlight=False)
+    ],
+    select_callback=_generic_simple_menu_select
 )
-
-
-_main_menu_selections = {
-    1: player_menu,
-    2: server_menu,
-    3: voting_menu
-}

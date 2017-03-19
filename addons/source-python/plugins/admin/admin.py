@@ -18,6 +18,6 @@ def unload():
     pass
 
 
-@command_manager.add_command('sm_admin', 'a')
+@command_manager.add_command('sp_admin', 'a')
 def _show_admin_menu(player):
     main_menu.send(player)

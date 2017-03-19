@@ -47,8 +47,7 @@ def _on_mute_player_select(menu, index, choice):
 mute_menu = PagedMenu(
     title=menus['Mute Menu'],
     build_callback=_on_mute_player_build,
-    select_callback=_on_mute_player_select,
-    # parent_menu=player_menu,
+    select_callback=_on_mute_player_select
 )
 
 #
@@ -68,8 +67,7 @@ def _on_slay_player_select(menu, index, choice):
 slay_menu = PagedMenu(
     title=menus['Slay Menu'],
     build_callback=_on_slay_player_build,
-    select_callback=_on_slay_player_select,
-    # parent_menu=player_menu,
+    select_callback=_on_slay_player_select
 )
 
 
@@ -89,8 +87,7 @@ def _on_kick_player_select(menu, index, choice):
 kick_menu = PagedMenu(
     title=menus['Kick Menu'],
     build_callback=_on_kick_player_build,
-    select_callback=_on_kick_player_select,
-    # parent_menu=player_menu,
+    select_callback=_on_kick_player_select
 )
 
 
@@ -111,12 +108,13 @@ def _on_ban_player_select(menu, index, choice):
 def _on_ban_duration_build(menu, index):
     """All possible ban durations are declared here"""
     menu.clear()
-    menu.append(PagedOption(menus['1 Hour'], 60))
-    menu.append(PagedOption(menus['2 Hour'], 120))
-    menu.append(PagedOption(menus['4 Hour'], 240))
-    menu.append(PagedOption(menus['1 Day'], 1440))
-    menu.append(PagedOption(menus['2 Day'], 2880))
-    menu.append(PagedOption(menus['7 Day'], 10080))
+    menu.append(PagedOption(menus['Hour'].get_string(Player(index).language[:2], hours=1), 60))
+    menu.append(PagedOption(menus['Hours'].get_string(Player(index).language[:2], hours=2), 120))
+    menu.append(PagedOption(menus['Hours'].get_string(Player(index).language[:2], hours=4), 240))
+    menu.append(PagedOption(menus['Day'].get_string(Player(index).language[:2], days=1), 1440))
+    menu.append(PagedOption(menus['Days'].get_string(Player(index).language[:2], days=2), 2880))
+    menu.append(PagedOption(menus['Days'].get_string(Player(index).language[:2], days=7), 10080))
+    
     # menu.append(PagedOption(menus['Permanent'], 0))
 
 
@@ -142,8 +140,7 @@ def _on_ban_reason_select(menu, index, choice):
 ban_menu = PagedMenu(
     title=menus['Ban Menu'],
     build_callback=_on_ban_player_build,
-    select_callback=_on_ban_player_select,
-    # parent_menu=player_menu,
+    select_callback=_on_ban_player_select
 )
 
 ban_duration = PagedMenu(

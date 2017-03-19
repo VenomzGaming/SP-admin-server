@@ -1,5 +1,3 @@
-## IMPORTS
-
 from commands import CommandReturn
 from commands.client import ClientCommandFilter
 from engines.server import engine_server
@@ -31,9 +29,10 @@ def on_client_command(array, index):
                 method(*args)
 
             else:
-                engine_server.client_printf(player.edict,
-                    'CA - This command requires {} arguments.\n'.format(
-                        length))
+                engine_server.client_printf(
+                    player.edict,
+                    'CA - This command requires {} arguments.\n'.format(length)
+                )
 
             return CommandReturn.BLOCK
 
