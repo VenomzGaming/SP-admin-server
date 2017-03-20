@@ -5,13 +5,13 @@ from ..strings import menus
 from ..mainmenu import AdminMenu
 
 __all__ = (
-    'PlayerCommandsMenu'
+    'ServerCommandsMenu'
 )
 
-class PlayerCommandsMenu(AdminMenu):
+class ServerCommandsMenu(AdminMenu):
     """Commands about players"""
 
-    caption = 'Gestion des joueurs'
+    caption = 'Gestion du serveur'
     needed_flag = 'a'
 
     @classmethod
