@@ -1,6 +1,7 @@
 from commands import CommandReturn
 from commands.client import ClientCommandFilter
 from engines.server import engine_server
+from messages import SayText2
 from players.entity import Player
 
 from .filters import Filter
