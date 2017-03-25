@@ -7,20 +7,25 @@ This plugin is an alpha version, *we are still developping it* ! We reserve righ
 # Installation
 1. Clone the repository
 2. Upload it in the root of your game server
-3. Go edit the `permissions.py` file to setup your admins permissions. The `admin_config` object is a json object should look like
+3. Use now Source-python auth system to give admin permission :
+Let's add your admin in /cfg/source-python/auth/player.json
 ```
 {
-	'<steam_id_v3>': '<list of permissions>',
-	'STEAM_1:0:26270590': 'a', # Example, will have the 'a' flag
-	'STEAM_1:0:26270591': 'abe' # Example, will have the 'a', 'b' AND 'e' flag
+    "STEAM_1:0:18526267": {
+        "permissions": [
+        	"admin.menu",
+            "admin.player",
+            "admin.kick"
+        ]
+    }
 }
 ```
 
 # Development
-You can add a new command with the decorator `@command_manager.add_command(<command_name>, <needed_flag>)`.
+You can add a new command with the decorator `@command_manager.add_command(<command_name>, <permission>)`.
 For example
 ```
-@command_manager.add_command('sp_admin', 'a') # This command can be triggered by typping 'sp_admin' in the game console and the triggerer needs the 'a' flag.
+@command_manager.add_command('sp_admin', 'admin.menu') # This command can be triggered by typping 'sp_admin' in the game console and the triggerer needs the 'admin.menu' permission.
 def _show_admin_menu(player):
 	AdminMenu.menu().send(player)
 ```

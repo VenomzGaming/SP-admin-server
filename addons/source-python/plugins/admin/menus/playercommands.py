@@ -13,7 +13,7 @@ class PlayerCommandsMenu(AdminMenu):
     """Commands about players"""
 
     caption = 'Gestion des joueurs'
-    needed_flag = 'a'
+    needed_flag = 'admin.player'
 
     @classmethod
     def menu(cls):

@@ -1,5 +1,9 @@
 ## IMPORTS
 
+from events import Event
+from messages import SayText2
+from players.entity import Player
+
 import menus
 from .commands.manager import command_manager
 from .commands.filters import Filter
@@ -16,8 +20,8 @@ def load():
 
 def unload():
     pass
+    
 
-
-@command_manager.add_command('sp_admin', 'a')
+@command_manager.add_command('sp_admin', 'admin.menu')
 def _show_admin_menu(player):
     AdminMenu.menu().send(player)

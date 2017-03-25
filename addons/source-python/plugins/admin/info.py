@@ -1,4 +1,6 @@
-from plugins.info import PluginInfo
+## IMPORTS
+
+from plugins.manager import plugin_manager
 
 ## ALL DECLARATION
 
@@ -8,12 +10,4 @@ __all__ = (
 
 ## INFO
 
-info = PluginInfo(
-    'sp_admin',
-    verbose_name='SourcePython:Admin',
-    basename='admin',
-    author='Blackwolf & Existenz - Venomz.fr',
-    description='A complete admin plugin for SourcePython',
-    version=0.1,
-    url='https://venomz.fr/'
-)
+info = plugin_manager.get_plugin_info(__name__)

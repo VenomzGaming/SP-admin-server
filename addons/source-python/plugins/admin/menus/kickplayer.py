@@ -14,7 +14,7 @@ class KickPlayer(PlayerCommandsMenu):
     """Menu used to kick players"""
 
     caption = 'Kicker un joueur'
-    needed_flag = 'a'
+    needed_flag = 'admin.kick'
 
     @staticmethod
     def select(menu, index, choice):

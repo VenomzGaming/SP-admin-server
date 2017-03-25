@@ -14,20 +14,19 @@ def on_client_command(array, index):
 
     if command in command_manager:
         try:
-            method, length, flag = command_manager[command]
+            method, length, permission = command_manager[command]
         except:
             method, length = command_manager[command]
 
         player = Player(index)
 
-        if method and check_permission(player, flag):
+        if method and check_permission(player, permission):
             args = [player]
             for i in range(1, len(array)):
                 args.append(array[i])
 
             if len(args) == length:
                 method(*args)
-
             else:
                 engine_server.client_printf(
                     player.edict,
