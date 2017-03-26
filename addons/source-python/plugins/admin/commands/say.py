@@ -3,15 +3,14 @@
 from commands.typed import TypedClientCommand, TypedSayCommand, CommandReturn
 from messages import SayText2, HintText, HudMsg
 from players.entity import Player
-from players.helpers import index_from_name
 
 from .filters import Filter
 from .manager import command_manager
+from ..permissions import on_permission_failed
 from ..strings import messages
 
 
-
-## GLOBAL
+## GLOBALS
 
 # Admin flag
 ADMIN_CHAT_FLAG = "admin.chat"
@@ -22,16 +21,12 @@ ADMIN_STRING = messages['Admin']
 
 ## CHAT COMMAND
 
-def add_name_prefix(index):
+def add_name_prefix(player_index):
     return messages['Admin Prefix Message'].get_string(
-        Player(index).language[:2],
-        tag=ADMIN_STRING[Player(index).language[:2]], 
-        name=Player(index).name
+        Player(player_index).language[:2],
+        tag=ADMIN_STRING[Player(player_index).language[:2]], 
+        name=Player(player_index).name
         )
-
-
-def on_permission_failed(command_info, args):
-    SayText2(messages['No Perm']).send(command_info.index)
 
 
 def private_message(player, admin, msg):
@@ -106,6 +101,9 @@ def _command_psay(command_info, recipient, *msg:str):
     admin = Player(command_info.index)
     msg = ' '.join(msg)
 
+    if len(msg) == 0:
+        return CommandReturn.BLOCK
+
     if recipient[0:1] is '@':
         players = [user for user in Filter(recipient, admin) if user.userid != admin.userid]
 
@@ -121,9 +119,8 @@ def _command_psay(command_info, recipient, *msg:str):
                 private_message(target, None, msg)
             i += 1
     else:
-        target = recipient if recipient[0:1] is '#' else '#' + recipient
-        player = [user for user in Filter(target, admin) if user.userid != admin.userid]
-        
+        player = [user for user in Filter(recipient, admin) if user.userid != admin.userid]
+
         if len(player) == 1:
             private_message(player[0], admin, msg)
         elif len(player) == 0:
@@ -132,3 +129,4 @@ def _command_psay(command_info, recipient, *msg:str):
             SayText2(messages['More Than One']).send(admin.index)
 
     return CommandReturn.BLOCK
+

@@ -1,10 +1,9 @@
-import collections
-from collections import OrderedDict
-from filters.players import PlayerIter
-from players.helpers import userid_from_index
-from menus import Text
+## IMPORTS
+
 from paths import GAME_PATH
 
+
+## DECLARTIONS
 
 __all__ = (
     'get_map_list',
@@ -12,7 +11,6 @@ __all__ = (
 
 
 ##   UTILS
-
 
 def get_map_list():
     """Returns the map list found in the maplist.txt file"""

@@ -1,28 +1,27 @@
 ## IMPORTS
 
-from collections import defaultdict
 from engines.server import engine_server
 from messages import SayText2
 
+from .strings import messages
 
 ## DECLARTIONS
 
 __all__ = (
+    'on_permission_failed',
     'check_permission',
 )
 
 
-# def check_permission(player, character):
-#     if character in admin_permissions[player.steamid]:
-#         return True
-#     else:
-#         engine_server.client_printf(player.edict,
-#             'CA - You do not have permissions to use this command.\n')
-#         return False
+##   PERMISSION
+
+def on_permission_failed(player, args):
+    SayText2(messages['No Perm']).send(player.index)
+
 
 def check_permission(player, permission):
     if permission in player.permissions:
         return True
     else:
-        SayText2('No permission').send()
+        on_permission_failed(player)
         return False

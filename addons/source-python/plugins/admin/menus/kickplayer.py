@@ -1,9 +1,9 @@
 from menus import PagedMenu, PagedOption, Text
 from filters.players import PlayerIter
 
-from ..strings import menus
-# from ..mainmenu import MainMenu
+from admin.commands.punishment import Punishment
 from .playercommands import PlayerCommandsMenu
+from ..strings import menus
 
 
 __all__ = (
@@ -19,7 +19,7 @@ class KickPlayer(PlayerCommandsMenu):
     @staticmethod
     def select(menu, index, choice):
         """Kick player"""
-        choice.value.kick()
+        Punishment.kick(choice.value)
 
     @staticmethod
     def build(menu, index):
