@@ -1,7 +1,6 @@
 from menus import SimpleMenu, SimpleOption, Text
 
 from ..strings import menus
-# from ..mainmenu import MainMenu
 from ..mainmenu import AdminMenu
 
 __all__ = (
@@ -9,10 +8,10 @@ __all__ = (
 )
 
 class ServerCommandsMenu(AdminMenu):
-    """Commands about players"""
+    """Commands about server"""
 
-    caption = 'Gestion du serveur'
-    needed_flag = 'a'
+    caption = menus['Server Menu']
+    needed_flag = 'admin.server'
 
     @classmethod
     def menu(cls):

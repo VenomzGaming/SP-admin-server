@@ -7,26 +7,30 @@ from ..strings import menus
 
 
 __all__ = (
-    'KickPlayer'
+    'MutePlayer'
 )
 
-class KickPlayer(PlayerCommandsMenu):
-    """Menu used to kick players"""
+class MutePlayer(PlayerCommandsMenu):
+    """Menu used to mute players"""
 
-    caption = menus['Kick Menu']
-    needed_flag = 'admin.kick'
+    caption = menus['Mute Menu']
+    needed_flag = 'admin.mute'
 
     @staticmethod
     def select(menu, index, choice):
-        """Kick player"""
-        Punishment.kick(choice.value)
+        """Mute player"""
+        Punishment.mute(choice.value)
 
     @staticmethod
     def build(menu, index):
         """List players"""
         menu.clear()
         for player in PlayerIter('human'):
-            menu.append(PagedOption(player.name, player))
+            muted = menus['Muted'][player.language[:2]] if player.is_muted() else ''
+            menu.append(PagedOption(menus['Mute Player'].get_string(
+                player=player.name, 
+                tate=muted), 
+            player))
 
     @classmethod
     def menu(cls):

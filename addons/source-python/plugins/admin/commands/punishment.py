@@ -20,14 +20,19 @@ class Punishment:
         """Kick a player"""
         player.kick()
 
+
     @classmethod
-    def ban(cls, player, *args):
-        """Kick a player"""
+    def ban(cls, player, duration, *args):
+        """Ban a player"""
         if len(args) == 0:
             player.ban(kick=True, write_ban=True)
         else:
-            player.ban(duration=args[0], kick=True, write_ban=True)
- 
+            if len(args[0]) > 1:
+                player.ban(duration=duration, kick=False, write_ban=True)
+                player.kick(args[0])
+            else:
+                player.ban(duration=duration, kick=True, write_ban=True)
+
 
     @classmethod
     def slay(cls, player, *args):
@@ -35,4 +40,16 @@ class Punishment:
         if not player.dead:
             player.slay()
             SayText2(messages['Slay']).send(player.index)
+
+
+    @classmethod
+    def mute(cls, player, *args):
+        """Mute a player"""
+        if player.is_muted():
+            player.unmute()
+            SayText2(messages['Unmute']).send(player.index)
+        else:
+            player.mute()
+            SayText2(messages['Mute']).send(player.index)
+        
         

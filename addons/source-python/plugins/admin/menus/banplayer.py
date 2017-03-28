@@ -3,9 +3,8 @@ from filters.players import PlayerIter
 from players.entity import Player
 
 from ..strings import menus
-# from ..mainmenu import MainMenu
 from .playercommands import PlayerCommandsMenu
-from ..strings import reasons_messages
+from ..strings import menus, messages, reasons_messages
 
 
 __all__ = (
@@ -13,16 +12,16 @@ __all__ = (
 )
 
 class BanPlayer(PlayerCommandsMenu):
-    """Menu used to kick players"""
+    """Menu used to ban players"""
 
-    caption = 'Bannir un joueur'
-    needed_flag = 'a'
+    caption = menus['Ban Menu']
+    needed_flag = 'admin.ban'
 
     @staticmethod
     def build(menu, index):
         """List players"""
         menu.clear()
-        for player in PlayerIter(not_filters='bot'):
+        for player in PlayerIter('human'):
             menu.append(PagedOption(player.name, player))
 
     @staticmethod
@@ -59,7 +58,7 @@ class BanPlayerDuration:
         _menu = BanPlayerReason.menu()
         _menu.player = menu.player
         _menu.duration = choice.value
-        return menu
+        return _menu
 
     @classmethod
     def menu(cls):

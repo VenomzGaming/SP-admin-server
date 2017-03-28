@@ -4,8 +4,7 @@ from messages import SayText2
 from engines.server import engine_server
 from listeners.tick import Delay
 
-from ..strings import menus
-# from ..mainmenu import MainMenu
+from ..strings import menus, messages
 from .servercommands import ServerCommandsMenu
 from ..utils.utils import get_map_list
 
@@ -17,14 +16,19 @@ __all__ = (
 class ChangeMap(ServerCommandsMenu):
     """Menu used to change map"""
 
-    caption = 'Changer de map'
-    needed_flag = 'a'
+    caption = menus['Change Map']
+    needed_flag = 'admin.map'
 
     @staticmethod
     def select(menu, index, choice):
         """Change map"""
         Delay(3, engine_server.change_level, (choice.value, None,))
-        SayText2(messages['Change Map'].format(name=choice.value, duration=3)).send()
+        for player in PlayerIter('human'):
+            SayText2(messages['Change Map'].get_string(
+                player.language[:2],
+                name=choice.value, 
+                duration=3)
+            ).send()
 
     @staticmethod
     def build(menu, index):

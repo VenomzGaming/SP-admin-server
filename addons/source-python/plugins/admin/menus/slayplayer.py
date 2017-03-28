@@ -1,8 +1,9 @@
 from menus import PagedMenu, PagedOption, Text
 from filters.players import PlayerIter
 
+
+from admin.commands.punishment import Punishment
 from ..strings import menus
-# from ..mainmenu import MainMenu
 from .playercommands import PlayerCommandsMenu
 
 
@@ -13,13 +14,13 @@ __all__ = (
 class SlayPlayer(PlayerCommandsMenu):
     """Menu used to kick players"""
 
-    caption = 'Tuer un joueur'
-    needed_flag = 'a'
+    caption = menus['Slay Menu']
+    needed_flag = 'admin.slay'
 
     @staticmethod
     def select(menu, index, choice):
-        """Kick player"""
-        choice.value.slay()
+        """Slay player"""
+        Punishment.slay(choice.value)
 
     @classmethod
     def menu(cls):
