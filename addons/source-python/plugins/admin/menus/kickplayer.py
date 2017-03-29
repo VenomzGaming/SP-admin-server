@@ -20,6 +20,7 @@ class KickPlayer(PlayerCommandsMenu):
     def select(menu, index, choice):
         """Kick player"""
         Punishment.kick(choice.value)
+        return menu
 
     @staticmethod
     def build(menu, index):

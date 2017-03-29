@@ -20,6 +20,7 @@ class MutePlayer(PlayerCommandsMenu):
     def select(menu, index, choice):
         """Mute player"""
         Punishment.mute(choice.value)
+        return menu
 
     @staticmethod
     def build(menu, index):

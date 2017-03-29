@@ -29,6 +29,7 @@ class ChangeMap(ServerCommandsMenu):
                 name=choice.value, 
                 duration=3)
             ).send()
+        return menu
 
     @staticmethod
     def build(menu, index):

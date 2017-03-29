@@ -20,7 +20,15 @@ class SlayPlayer(PlayerCommandsMenu):
     @staticmethod
     def select(menu, index, choice):
         """Slay player"""
-        Punishment.slay(choice.value)
+        Punishment.slay(choice.value, owner=index)
+        return menu
+
+    @staticmethod
+    def build(menu, index):
+        """List players"""
+        menu.clear()
+        for player in PlayerIter():
+            menu.append(PagedOption(player.name, player))
 
     @classmethod
     def menu(cls):

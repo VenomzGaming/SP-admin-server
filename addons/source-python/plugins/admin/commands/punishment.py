@@ -22,24 +22,26 @@ class Punishment:
 
 
     @classmethod
-    def ban(cls, player, duration, *args):
+    def ban(cls, player, duration, **kwargs):
         """Ban a player"""
-        if len(args) == 0:
+        if len(kwargs) == 0:
             player.ban(kick=True, write_ban=True)
         else:
-            if len(args[0]) > 1:
+            if 'reason' in kwargs:
                 player.ban(duration=duration, kick=False, write_ban=True)
-                player.kick(args[0])
+                player.kick(kwargs['reason'])
             else:
                 player.ban(duration=duration, kick=True, write_ban=True)
 
 
     @classmethod
-    def slay(cls, player, *args):
+    def slay(cls, player, **kwargs):
         """Slay a player"""
         if not player.dead:
             player.slay()
             SayText2(messages['Slay']).send(player.index)
+        else:
+            SayText2(messages['Already Dead']).send(kwargs['owner'])
 
 
     @classmethod

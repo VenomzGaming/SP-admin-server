@@ -2,6 +2,7 @@ from menus import PagedMenu, PagedOption, Text
 from filters.players import PlayerIter
 from players.entity import Player
 
+from admin.commands.punishment import Punishment
 from ..strings import menus
 from .playercommands import PlayerCommandsMenu
 from ..strings import menus, messages, reasons_messages
@@ -64,7 +65,7 @@ class BanPlayerDuration:
     def menu(cls):
         """Returns a menu with durations"""
         return PagedMenu(
-            title='Choisissez une durée',
+            title=menus['Ban Duration'],
             build_callback=cls.build,
             select_callback=cls.select
         )
@@ -74,7 +75,7 @@ class BanPlayerReason:
     def build(cls, menu, index):
         """Add reasons from reasons file into the menu"""
         menu.clear()
-        reasons_list = reasons_messages['reasons'][str(Player(index).language)[:2]]['ban']
+        reasons_list = reasons_messages['reasons'][Player(index).language[:2]]['ban']
 
         for reasons in reasons_list:
             menu.append(PagedOption(reasons, reasons))
@@ -82,13 +83,15 @@ class BanPlayerReason:
     @staticmethod
     def select(menu, index, choice):
         """Proceed ban the player"""
-        menu.player.ban(duration=menu.duration, kick=False, write_ban=True)
-        menu.player.kick(choice.value)
+        Punishment.ban(menu.player, menu.duration, reason=choice.value)
+        # menu.player.ban(duration=menu.duration, kick=False, write_ban=True)
+        # menu.player.kick(choice.value)
+        return menu
 
     @classmethod
     def menu(cls):
         return PagedMenu(
-            title='Raison du ban',
+            title=menus['Ban Reasons'],
             build_callback=cls.build,
             select_callback=cls.select
         )
