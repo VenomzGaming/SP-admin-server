@@ -29,7 +29,7 @@ class MutePlayer(PlayerCommandsMenu):
             muted = menus['Muted'][player.language[:2]] if player.is_muted() else ''
             menu.append(PagedOption(menus['Mute Player'].get_string(
                 player=player.name, 
-                tate=muted), 
+                state=muted), 
             player))
 
     @classmethod
